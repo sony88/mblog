@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{stripslashes:blogConfig.sitename}</title>
+<style type="text/css" id="internalStyle">
+body { width:100%; margin:0px auto; font-family:Helvetica,sans-serif; }
+a { color:#36c; }
+a:hover { color:#33669b; }
+#info{ padding:0px 2px 2px 2px; line-height:150%; }
+#login_area{ padding:5px 2px; }
+#login_area span{ color:#999; }
+#login_area p{ padding:2px 0px 4px 0px; margin:0px; }
+#login_error{ color:red; }
+.input { width:160px; height:18px; border:solid 1px #000; margin:0px; padding:0px; }
+#bottom{ padding:3px 0 2px 2px; border-top:solid 1px #bbb; line-height:150%; margin-top:6px; }
+</style>
+</head>
+<body>
+<div><img src="../{blogConfig.avatar_upload}avatar.jpg" height="50" width="50" title="{stripslashes:blogConfig.nickname}" border="0"/></div>
+<div id="info">{stripslashes:blogConfig.siteintro}</div>
+<!-- IF loginResult --><div id="login_error">{loginResult}</div><!-- ENDIF -->
+<div id="login_area">
+<form method="post" action="./">
+<span>账号:</span>
+<p><input type="text" name="username" value="" class="input" maxlength="20"/></p>
+<span>密码:</span>
+<p><input type="password" name="password" value="" class="input" maxlength="20"/></p>
+<p><input type="submit" name="login" value="登 录" /></p>
+</form>
+</div>
+<div id="bottom">&#169; PHPSay-Microblog, {nowTime}</div>
+</body>
+</html>

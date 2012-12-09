@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{stripslashes:blogConfig.sitename}</title>
+<style type="text/css" id="internalStyle">
+body { width:100%; margin:0px auto; font-family:Helvetica,sans-serif; }
+a { color:#36c; }
+a:hover { color:#33669b; }
+#top{ color:#FFFFFF;background:#D01C39;height:24px;width:100%; }
+#nav{ line-height:24px; padding:3px 2px 3px; border-bottom:solid 1px #bbb; }
+.tdno{ text-decoration:none; }
+#post{ border:solid 1px #EEEEEE; background:#FAFAFA; line-height:150%; margin:5px 2px; padding:0 3px; }
+.list{ padding:4px 2px 4px 2px;border-bottom:solid 1px #ddd; }
+.page{ padding:4px 2px 4px 2px; }
+#bottom{ padding:3px 0 2px 2px; border-top:solid 1px #bbb; line-height:150%; margin-top:6px; }
+</style>
+</head>
+<body>
+<div id="top">{stripslashes:blogConfig.sitename}</div>
+<div id="nav">
+<a href="./" class="tdno">首页</a> <font color="#666666">|</font> <a href="./?do=logout" class="tdno">退出</a>
+</div>
+<!-- IF blogConfig.comment_open >= "1" -->
+	<div id="post">
+	<form method="post" action="./comment.php?id={messageId}&amp;p={thisPage}">
+	<input type="text" name="comment" maxlength="70"/> <input type="submit" value="回复"/>
+	</form>
+	</div>
+<!-- ENDIF -->
+<!-- IF postResult -->
+	<div><font color="#ff0000">{postResult}</font></div>
+<!-- ENDIF -->
+<!-- BEGIN commentArr.Comment -->
+	<div class="list">
+	{message}<br/>
+	<font color="#999999">{datetime:dateline}</font>
+	<!-- IF blogmaster == "1" --> <font color="#999999">by</font> <font color="red">{top.blogConfig.nickname}</font>
+	<!-- ELSE -->
+		<!-- IF nickname == "" --> <font color="#999999">匿名</font>
+		<!-- ELSE --> <font color="#999999">by</font> <font color="#b47949">{nickname}</font>
+		<!-- ENDIF -->
+	<!-- ENDIF --> 
+	<a href="./comment.php?id={mid}&amp;delId={cid}&amp;p={top.thisPage}">[删除]</a>
+	</div>
+<!-- END -->
+<div class="page">共{commentArr.Total}条 {pageArr.pagePre} {pageArr.pageNext}</div>
+<div id="bottom">&#169; PHPSay-Microblog, {nowTime}</div>
+</body>
+</html>

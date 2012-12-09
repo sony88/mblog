@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{stripslashes:blogConfig.sitename}</title>
+<meta content="{stripslashes:blogConfig.keywords}" name="keywords" />
+<meta content="{stripslashes:blogConfig.description}" name="description" />
+<link rel="alternate" type="application/rss+xml" href="rss.php" title="{stripslashes:blogConfig.sitename}" />
+<link rel="stylesheet" type="text/css" href="_static/{blogConfig.skin}/style.css" />
+<script type="text/javascript" src="_static/js/jquery.js"></script>
+<script type="text/javascript" src="_static/js/form.js"></script>
+<script type="text/javascript" src="_static/js/action.js"></script>
+<script type="text/javascript" src="_static/js/zoom.js"></script>
+<!-- IF loginStat == "1" -->
+<script type="text/javascript" src="_static/js/swfobject.js"></script>
+<script type="text/javascript" src="_static/js/uploadify.js"></script>
+<script type="text/javascript">var skinName = "{blogConfig.skin}";</script>
+<script type="text/javascript" src="_static/js/index.js"></script>
+<!-- ENDIF -->
+</head>
+<body>
+<!-- INCLUDE header.html -->
+<div id="main">
+<!-- IF loginStat == "1" -->
+	<div class="entry_post">
+	<form id="submit_form">
+	<h2 id="input_count">140</h2>
+	<textarea name="MSG" id="input_message" rows="4" onkeydown="if(event.keyCode==13){return false;}" onkeyup="cState()"></textarea>
+	<input type="hidden" name="PIC" id="input_picture" value="">
+	<input type="submit" value="" id="update" class="btn_update btn_update_close" onclick="updateDo()">
+	</form>
+	<span class="insert"><input type="file" name="picture" id="picture" class="input_file"></span>
+	<span id="upresult" class="insert"></span>
+	<div class="clear"></div>
+	</div>
+<!-- ENDIF -->
+<!-- BEGIN blogArr.Blog -->
+	<div class="entry<!-- IF ROWCNT == "0" --> first<!-- ENDIF -->">
+	<div class="content">
+	{message}
+	<!-- IF picture != "" -->
+		<a href="{top.blogConfig.pic_upload}{piclink}" class="zoom"><img src="{top.blogConfig.pic_upload}{picture}"></a>
+	<!-- ENDIF -->
+	</div>
+	<div class="from">
+	<span class="mycome">{datetime:dateline} from {origin:origin}</span>
+	<span class="option">
+	<span class="reply" onclick="loadComments({mid})">评论<span id="reply_{mid}">({comments})</span></span>
+	<!-- IF top.loginStat == "1" -->
+		<span class="delete" onclick="deleteBlog({mid},'{picture}')">删除</span>
+	<!-- ENDIF top.loginStat -->
+	</span>
+	</div>
+	<div class="clear"></div>
+    </div>
+	<div class="comment" id="comment_{mid}"></div>
+<!-- END blogArr.Blog -->
+    <div class="pages">
+	<em>共 {blogArr.Total} 篇</em>
+	{pageArr.pageFirst}{pageArr.pagePre}{pageArr.pageList}{pageArr.pageNext}{pageArr.pageLast}
+	<!-- IF pageArr.pageTotal > "5" -->
+		<kbd><input type="text" name="page" size="3" onkeydown="if(event.keyCode == 13){cPage({pageArr.pageTotal})}" title="快速翻页" /></kbd>
+	<!-- ENDIF pageArr.pageTotal -->
+	</div>
+    <div id="stat">
+		数据统计：24小时内发布<strong>{blogDay}</strong>篇 ... 一周内发布<strong>{blogWeek}</strong>篇 ... 总发布数<strong>{blogArr.Total}</strong>
+	</div>
+</div>
+<!-- INCLUDE footer.html -->
+</body>
+</html>

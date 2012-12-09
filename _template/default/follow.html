@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{stripslashes:blogConfig.sitename} &rsaquo; <!-- IF friendType == "1" -->我关注的人<!-- ELSE -->关注我的人<!-- ENDIF --></title>
+<meta content="{stripslashes:blogConfig.keywords}" name="keywords" />
+<meta content="{stripslashes:blogConfig.description}" name="description" />
+<link rel="stylesheet" type="text/css" href="_static/{blogConfig.skin}/style.css" />
+<script type="text/javascript" src="_static/js/jquery.js"></script>
+<script type="text/javascript" src="_static/js/form.js"></script>
+<script type="text/javascript" src="_static/js/action.js"></script>
+<script type="text/javascript" src="_static/js/zoom.js"></script>
+</head>
+<body>
+<!-- INCLUDE header.html -->
+<div id="main">
+<!-- BEGIN friendArr.Friend -->
+<div class="entry<!-- IF ROWCNT == "0" --> first<!-- ENDIF -->">
+<div class="avatar">
+<a href="{furl}" target="_blank"><img src="./friend_server.php?avatar={friendavatar}" alt="{friendname}" title="{friendname}"></a>
+</div>
+<div class="info">
+<div class="content">
+<a href="{furl}" target="_blank">{friendname}</a>：{friendmsg}
+<!-- IF friendpics != "" -->
+	<a id="fpic_{fid}" href="{friendpicb}" class="zoom"><img src="{friendpics}" onError="this.src='./friend_server.php?img={friendpids}';$('#fpic_{fid}').attr('href','./friend_server.php?img={friendpidb}')"></a>
+<!-- ENDIF -->
+</div>
+<div class="other">
+	<span>
+	{datetime:friendtime} from {friendorigin}
+	<!-- IF top.loginStat == "1" -->&nbsp;&nbsp;<a href="javascript:;" onclick="fComLoad({fid})">(Reply)</a><!-- ENDIF -->
+	</span>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+<!-- IF top.loginStat == "1" -->
+	<div class="comment" id="comment_{fid}">
+	<form id="re_form_{fid}">
+	<input type="text" name="comment" id="re_msg_{fid}" class="long" maxlength="70" onkeydown="if(event.keyCode==13){fComDo({fid})}" />
+	<input type="hidden" name="mid" value="{friendmid}" />
+	<input type="hidden" name="furl" value="{furl}" />
+	<input type="submit" class="submit" id="re_sub_{fid}" value="" onclick="fComDo({fid})" />
+	</form>
+	</div>
+<!-- ENDIF -->
+<!-- END -->
+<div class="pages">
+<em>
+<!-- IF friendType == "1" -->共关注了 {friendArr.Total} 位好友<!-- ELSE -->共被 {friendArr.Total} 位好友关注<!-- ENDIF -->
+</em>
+{pageArr.pageFirst}{pageArr.pagePre}{pageArr.pageList}{pageArr.pageNext}{pageArr.pageLast}
+</div>
+</div>
+<!-- INCLUDE footer.html -->
+</body>
+</html>

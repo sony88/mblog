@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{stripslashes:blogConfig.sitename} &rsaquo; 管理评论</title>
+<link rel="stylesheet" type="text/css" href="_static/{blogConfig.skin}/style.css" />
+<script type="text/javascript" src="_static/js/jquery.js"></script>
+<script type="text/javascript" src="_static/js/form.js"></script>
+<script type="text/javascript" src="_static/js/action.js"></script>
+</head>
+<body>
+<!-- INCLUDE header.html -->
+<div id="main">
+<!-- BEGIN commentArr.Comment -->
+	<div class="entry<!-- IF ROWCNT == "0" --> first<!-- ENDIF -->">
+	<div class="content">{message}</div>
+	<div class="from">
+	<span class="mycome">{datetime:dateline} by <!-- IF nickname == "" -->Anonymity<!-- ELSE -->{nickname}<!-- ENDIF --></span>
+	<span class="option">
+	<!-- IF display == "0" -->
+		<span class="check" id="display_{cid}" onclick="displayComment({cid})">审核</span>
+	<!-- ENDIF -->
+	<span class="delete" onclick="delComment({mid},{cid},1)">删除</span>
+	</span>
+	</div>
+	<div class="clear"></div>
+	</div>
+<!-- END commentArr.Comment -->
+	<div class="pages">
+	<em>共 {commentArr.Total} 篇</em>	{pageArr.pageFirst}{pageArr.pagePre}{pageArr.pageList}{pageArr.pageNext}{pageArr.pageLast}
+	</div>
+</div>
+<!-- INCLUDE footer.html -->
+</body>
+</html>

@@ -1,0 +1,25 @@
+<div id="navbar">
+<!-- IF loginStat == "1" -->
+	<a href="./friend.php">关注管理</a>
+	<a href="./friend.php?t=fans">粉丝管理</a>
+	<a href="./comments.php">评论管理</a>
+	<a href="./setting.php">微博设置</a>
+	<a href="./password.php">账户密码</a>
+	<a href="./login.php?do=logout">安全退出</a>
+<!-- ELSE -->
+	<a href="./login.php">登录</a>
+<!-- ENDIF -->
+</div>
+<div class="wrapper">
+<div id="header">
+<img src="{blogConfig.avatar_upload}avatar.jpg" alt="{stripslashes:blogConfig.nickname}" id="avatar" />
+<h1><a href="./">{stripslashes:blogConfig.sitename}</a><span><a href="./">{blogConfig.siteurl}</a></span></h1>
+<ul id="menu">
+<li><a href="./">微博</a></li>
+<li><a href="./follow.php">关注</a></li>
+<li><a href="./follow.php?t=fans">粉丝</a></li>
+</ul>
+</div>
+<div id="description">
+<span class="left">{stripslashes:blogConfig.siteintro}</span><span class="right"><a href="./rss.php" title="RSS订阅" target="_blank"></a></span>
+</div>

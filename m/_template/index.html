@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{stripslashes:blogConfig.sitename}</title>
+<style type="text/css" id="internalStyle">
+body { width:100%; margin:0px auto; font-family:Helvetica,sans-serif; }
+a { color:#36c; }
+a:hover { color:#33669b; }
+#top{ color:#FFFFFF;background:#D01C39;height:24px;width:100%; }
+#nav{ line-height:24px; padding:3px 2px 3px; border-bottom:solid 1px #bbb; }
+.tdno{ text-decoration:none; }
+#post{ border:solid 1px #EEEEEE; background:#FAFAFA; line-height:150%; margin:5px 2px; padding:0 3px; }
+.list{ padding:4px 2px 4px 2px;border-bottom:solid 1px #ddd; }
+.page{ padding:4px 2px 4px 2px; }
+#bottom{ padding:3px 0 2px 2px; border-top:solid 1px #bbb; line-height:150%; margin-top:6px; }
+</style>
+</head>
+<body>
+<div id="top">{stripslashes:blogConfig.sitename}</div>
+<div id="nav">
+<a href="./" class="tdno">首页</a> <font color="#666666">|</font> <a href="./?do=logout" class="tdno">退出</a>
+</div>
+<div id="post">
+<form method="post" action="./">
+<input type="text" name="MSG" maxlength="140"/> <input type="submit" value="提交"/>
+</form>
+</div>
+<!-- IF postResult -->
+	<div><font color="#ff0000">{postResult}</font></div>
+<!-- ENDIF -->
+<!-- BEGIN blogArr.Blog -->
+	<div class="list">
+		{message}<br/>
+		<!-- IF picture != "" -->
+			<a href="../{top.blogConfig.pic_upload}{piclink}"><img src="../{top.blogConfig.pic_upload}{picture}" border="0"/></a><br/>
+		<!-- ENDIF -->
+		<font color="#999999">{datetime:dateline} from {origin}</font> 
+		<a href="./comment.php?id={mid}">({comments})</a>&nbsp;&nbsp;<a href="./?delId={mid}&amp;delPic={picture}&amp;p={top.thisPage}">[删除]</a>
+	</div>
+<!-- END -->
+<div class="page">共{blogArr.Total}篇 {pageArr.pagePre} {pageArr.pageNext}</div>
+<div id="bottom">&#169; PHPSay-Microblog, {nowTime}</div>
+</body>
+</html>

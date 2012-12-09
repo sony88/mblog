@@ -1,0 +1,54 @@
+<ul>
+<!-- IF commentArr.Total > "0" -->
+	<!-- BEGIN commentArr.Comment -->
+		<li id="comment_list_{cid}">
+		<p>
+		<!-- IF display == "0" -->
+			<!-- IF top.loginStat == "1" -->
+				{message}
+			<!-- ELSE -->
+				<u>该评论审核中</u>
+			<!-- ENDIF -->
+		<!-- ELSE -->
+			{message}
+		<!-- ENDIF -->
+		</p>
+		<span class="from">
+			{datetime:dateline}
+			<!-- IF blogmaster == "1" --> <i>by</i> <u class="red">{top.blogConfig.nickname}</u>
+			<!-- ELSE -->
+				<!-- IF nickname == "" --> Anonymity<!-- ELSE --> <i>by</i> <!-- IF blogurl == "" -->
+																				<u>{nickname}</u>
+																			<!-- ELSE -->
+																				<a href="{blogurl}" target="_blank">{nickname}</a>
+																			<!-- ENDIF -->
+				<!-- ENDIF -->
+			<!-- ENDIF -->
+		</span>
+		<!-- IF top.loginStat == "1" -->
+			<span class="del"><a href="javascript:void(0);" onclick="delComment({mid},{cid},0)">×</a></span>
+			<!-- IF display == "0" -->
+				<span class="display" id="display_{cid}"><a href="javascript:void(0);" onclick="displayComment({cid})">○</a></span>
+			<!-- ENDIF -->
+		<!-- ENDIF -->
+		</li>
+	<!-- END -->
+	<!-- IF pageArr.pageTotal > "1" -->
+		<li class="page">{pageArr.pagePre}{pageArr.pageNext}</li>
+	<!-- ENDIF -->
+<!-- ELSE -->
+	<li><i>暂无评论</i></li>
+<!-- ENDIF -->
+</ul>
+<!-- IF blogConfig.comment_open >= "1" -->
+<div id="comment_div_{messageId}">
+<form id="comment_form_{messageId}">
+<!-- IF loginStat == "0" -->
+	<input type="text" name="nickname" id="input_nickname_{messageId}" class="short" maxlength="10" onkeydown="if(event.keyCode==13){return false;}" />:
+<!-- ENDIF -->
+<input type="text" name="comment" id="input_message_{messageId}" class="long" maxlength="70" onkeydown="if(event.keyCode==13){commentDo({messageId})}" />
+<input type="hidden" name="mid" value="{messageId}" />
+<input type="submit" class="submit" id="input_submit_{messageId}" value="" onclick="commentDo({messageId})" />
+</form>
+</div>
+<!-- ENDIF -->

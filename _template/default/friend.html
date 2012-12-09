@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{stripslashes:blogConfig.sitename} &rsaquo; 管理<!-- IF friendType == "1" -->我关注的人<!-- ELSE -->关注我的人<!-- ENDIF --></title>
+<link rel="stylesheet" type="text/css" href="_static/{blogConfig.skin}/style.css" />
+<script type="text/javascript" src="_static/js/jquery.js"></script>
+<script type="text/javascript" src="_static/js/form.js"></script>
+<script type="text/javascript" src="_static/js/friend.js"></script>
+</head>
+<body>
+<!-- INCLUDE header.html -->
+<div id="main" class="profile_edit">
+	<h2 class="nav_title"><!-- IF friendType == "1" -->我关注的人<!-- ELSE -->关注我的人<!-- ENDIF --></h2>
+	<!-- BEGIN friendArr.Friend -->
+	<div class="friend">
+	<!-- IF top.friendType == "1" -->
+		<span><a href="javascript:;" onclick="delFriend('{furl}','delFollow')">删除</a></span>
+	<!-- ELSE -->
+		<span><a href="javascript:;" onclick="delFriend('{furl}','delFans')">删除</a></span>
+		<span><a href="javascript:;" onclick="addFriend('{furl}')">关注</a></span>
+	<!-- ENDIF -->
+	<span><!-- IF fupdate > "0" -->上次成功请求于{datetime:fupdate}<!-- ELSE -->尚未成功请求<!-- ENDIF --></span>
+	<span><strong>{friendname}：</strong><a href="{furl}" target="_blank">{furl}</a></span>
+	</div>
+	<!-- END -->
+    <div class="pages">
+	<em>共 {friendArr.Total} 位</em>{pageArr.pageFirst}{pageArr.pagePre}{pageArr.pageList}{pageArr.pageNext}{pageArr.pageLast}
+	</div>
+	<form id="addForm" method="post">
+	<h2 class="nav_title">添加关注</h2>
+	<div class="s_f">
+		<strong>好友微博地址:</strong> （ 以 http:// 开始，以 / 结束。只可以关注 PHPSay-Microblog 系统用户 ）
+		<input type="text" class="input_message" name="url" value="http://" maxlength="90" />
+	</div>
+	<div class="s_s">
+		<input type="submit" name="addFollow" id="submit" value="确认关注" class="input_submit" />
+	</div>
+	<div id="result" class="s_r"></div>
+	</form>
+<div class="clear"></div>
+</div>
+<!-- INCLUDE footer.html -->
+</body>
+</html>
